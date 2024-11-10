@@ -2,9 +2,9 @@ use crate::http_client::base::HttpClient;
 
 /// TON API client
 pub struct TonApiClient<C: HttpClient = reqwest::Client> {
-    _base_url: String,
-    _api_key: String,
-    _http_client: C,
+    pub(crate) base_url: String,
+    pub(crate) api_key: String,
+    pub(crate) http_client: C,
 }
 
 /// Parameters of TON API client
@@ -22,9 +22,9 @@ impl<C: HttpClient> TonApiClient<C> {
     /// Initialize new instance of TON API client
     pub fn new(config: TonApiConfig<C>) -> Self {
         Self {
-            _base_url: config.base_url.to_owned(),
-            _api_key: config.api_key.to_owned(),
-            _http_client: config.http_client.unwrap_or_default(),
+            base_url: config.base_url.to_owned(),
+            api_key: config.api_key.to_owned(),
+            http_client: config.http_client.unwrap_or_default(),
         }
     }
 }
