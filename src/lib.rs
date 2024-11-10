@@ -3,9 +3,9 @@
 //! # Example
 //!
 //! ```
-//! use tonapi::{TonApiClient, TonApiConfig};
+//! use tonapi_rs::{TonApiClient, TonApiConfig};
 //!
-//! TonApiClient::new(TonApiConfig {
+//! TonApiClient::new(TonApiConfig::<reqwest::Client> {
 //!     base_url: "",
 //!     api_key: "",
 //!     ..Default::default()
@@ -18,12 +18,14 @@
 //! If you want switch it to another http client, you can:
 //!
 //! ```
-//! use tonapi::{HttpClient, RequestParams, TonApiClient, TonApiConfig};
+//! use tonapi_rs::{HttpClient, RequestParams, TonApiClient, TonApiConfig};
 //!
+//! #[derive(Default)]
 //! pub struct CustomHttpClient {}
 //!
+//! #[async_trait::async_trait]
 //! impl HttpClient for CustomHttpClient {
-//!     fn execute(&self, params: RequestParams) {
+//!     async fn execute(&self, params: RequestParams) {
 //!         // Add your logic here
 //!         todo!()
 //!     }
@@ -32,7 +34,7 @@
 //! TonApiClient::new(TonApiConfig {
 //!     base_url: "",
 //!     api_key: "",
-//!     http_client: Some(HttpClient {}),
+//!     http_client: Some(CustomHttpClient {}),
 //!     ..Default::default()
 //! });
 //! ```

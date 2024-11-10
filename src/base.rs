@@ -18,13 +18,13 @@ pub struct TonApiConfig<'a, C: HttpClient = reqwest::Client> {
     pub http_client: Option<C>,
 }
 
-impl TonApiClient {
+impl<C: HttpClient> TonApiClient<C> {
     /// Initialize new instance of TON API client
-    pub fn new(config: TonApiConfig) -> Self {
+    pub fn new(config: TonApiConfig<C>) -> Self {
         Self {
             _base_url: config.base_url.to_owned(),
             _api_key: config.api_key.to_owned(),
-            _http_client: config.http_client.unwrap_or_else(|| reqwest::Client::new()),
+            _http_client: config.http_client.unwrap_or_default(),
         }
     }
 }

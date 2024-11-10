@@ -17,7 +17,7 @@ pub struct RequestParams {
 
 /// All http requests goes using this crate. By implementing it you can use custom http client for TON API
 #[async_trait::async_trait]
-pub trait HttpClient {
+pub trait HttpClient: Default {
     /// HTTP request handler
     async fn execute(&self, params: RequestParams);
 }
