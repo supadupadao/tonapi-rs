@@ -1,0 +1,8 @@
+[package]
+name = "tonapi-rs"
+version = "0.0.1"
+edition = "2021"
+license = "MIT"
+authors = ["S. Suprun <hello@syoma.website>"]
+
+[dependencies]
